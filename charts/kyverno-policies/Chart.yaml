@@ -35,10 +35,6 @@ keywords:
 home: https://github.com/Cray-HPE/cray-kyverno-policies-upstream
 sources:
   - https://github.com/kyverno/policies
-dependencies:
-  - name: kyverno-policies
-    version: 1.6.0
-    repository: https://github.com/kyverno/policies
 maintainers:
   - name: Nirmata
     url: https://kyverno.io/
