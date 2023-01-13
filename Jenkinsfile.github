@@ -36,8 +36,8 @@ pipeline {
     }
 
     environment {
-        NAME = "cray-kyverno-policies"
-        DESCRIPTION = "Deploys kyverno policies for Cray system."
+        NAME = "cray-kyverno-policies-upstream"
+        DESCRIPTION = "Deploys kyverno upstream policies for Cray system."
         IS_STABLE = getBuildIsStable()
     }
 
