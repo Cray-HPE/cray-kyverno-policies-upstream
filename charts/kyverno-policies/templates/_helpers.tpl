@@ -23,6 +23,39 @@ app.kubernetes.io/version: "{{ .Chart.Version }}"
 helm.sh/chart: {{ include "kyverno-policies.chart" . }}
 {{- end -}}
 
+{{/* Set if a baseline policy is managed */}}
+{{- define "kyverno-policies.podSecurityBaseline" -}}
+{{- if or (eq .Values.podSecurityStandard "baseline") (eq .Values.podSecurityStandard "restricted") }}
+{{- true }}
+{{- else if and (eq .Values.podSecurityStandard "custom") (has .name .Values.podSecurityPolicies) }}
+{{- true }}
+{{- else -}}
+{{- false }}
+{{- end -}}
+{{- end -}}
+
+{{/* Set if a restricted policy is managed */}}
+{{- define "kyverno-policies.podSecurityRestricted" -}}
+{{- if eq .Values.podSecurityStandard "restricted" }}
+{{- true }}
+{{- else if and (eq .Values.podSecurityStandard "custom") (has .name .Values.podSecurityPolicies) }}
+{{- true }}
+{{- else if has .name .Values.includeRestrictedPolicies }}
+{{- true }}
+{{- else -}}
+{{- false }}
+{{- end -}}
+{{- end -}}
+
+{{/* Set if a other policies are managed */}}
+{{- define "kyverno-policies.podSecurityOther" -}}
+{{- if has .name .Values.includeOtherPolicies }}
+{{- true }}
+{{- else -}}
+{{- false }}
+{{- end -}}
+{{- end -}}
+
 {{/* Get deployed Kyverno version from Kubernetes */}}
 {{- define "kyverno-policies.kyvernoVersion" -}}
 {{- $version := "" -}}
