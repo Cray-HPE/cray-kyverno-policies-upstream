@@ -1,5 +1,4 @@
 {{- $name := "disallow-capabilities" }}
-{{- if eq (include "kyverno-policies.podSecurityBaseline" (merge (dict "name" $name) .)) "true" }}
 {{- include "kyverno-policies.supportedKyvernoCheck" (dict "top" . "ver" ">= 1.6.0-0") }}
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
@@ -55,4 +54,3 @@ spec:
               - SETPCAP
               - SETUID
               - SYS_CHROOT
-{{- end }}
