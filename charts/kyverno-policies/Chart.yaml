@@ -18,6 +18,6 @@ home: https://github.com/Cray-HPE/cray-kyverno-policies-upstream
 sources:
   - https://github.com/kyverno/policies
 maintainers:
-  - name: pradeepg
+  - name: Nirmata
     url: https://kyverno.io/
 kubeVersion: ">=1.16.0-0"
