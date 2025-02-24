@@ -1,1 +1,24 @@
-
+kyverno-policies:
+  # Setting to `custom` to not include the default discrete PSS baseline policies from upstream
+  podSecurityStandard: custom
+  
+  # Providing the podSecurity subrule baseline policy as a custom policy in Audit mode
+  customPolicies:
+  - apiVersion: kyverno.io/v1
+    kind: ClusterPolicy
+    metadata:
+      name: podsecurity-subrule-baseline
+    spec:
+      background: true
+      validationFailureAction: Audit
+      rules:
+      - name: baseline
+        match:
+          any:
+          - resources:
+              kinds:
+              - Pod
+        validate:
+          podSecurity:
+            level: baseline
+            version: latest
