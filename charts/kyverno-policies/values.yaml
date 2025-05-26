@@ -1,2 +1,2 @@
 # Control validationFailureAction of PSS baseline policy
-pssFailureAction: Enforce
+pssFailureAction: Audit
